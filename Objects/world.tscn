@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://16ua5f1b5l23"]
+
+[ext_resource type="Shader" path="res://Shaders/world.gdshader" id="1_tupmh"]
+[ext_resource type="Script" path="res://Objects/world.gd" id="2_obmja"]
+[ext_resource type="TileSet" uid="uid://c3sgqp562ebfr" path="res://Resources/worldc_tileset.tres" id="2_pgk0j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_msbjd"]
+shader = ExtResource("1_tupmh")
+shader_parameter/enabled = false
+
+[node name="World" type="TileMap"]
+material = SubResource("ShaderMaterial_msbjd")
+tile_set = ExtResource("2_pgk0j")
+format = 2
+script = ExtResource("2_obmja")

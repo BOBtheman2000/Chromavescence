@@ -1,0 +1,246 @@
+[gd_scene load_steps=34 format=3 uid="uid://m63h3wo1csll"]
+
+[ext_resource type="Texture2D" uid="uid://olsklrpa2sbi" path="res://Assets/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_cpqxn"]
+[ext_resource type="Script" path="res://Objects/player.gd" id="1_e1y7b"]
+[ext_resource type="Script" path="res://Objects/PlayerStateMachine.gd" id="3_s3vm7"]
+[ext_resource type="Script" path="res://Objects/Start.gd" id="4_2ere0"]
+[ext_resource type="Script" path="res://Objects/Idle.gd" id="4_4htim"]
+[ext_resource type="Script" path="res://Objects/Jump.gd" id="5_1rgnn"]
+[ext_resource type="Script" path="res://Objects/Run.gd" id="6_2pjuo"]
+[ext_resource type="Script" path="res://Objects/Dash.gd" id="7_6dapg"]
+[ext_resource type="Script" path="res://Objects/SoundController.gd" id="8_cq3m2"]
+[ext_resource type="AudioStream" uid="uid://bj00jdpqynmqd" path="res://Assets/Sounds/Jump.wav" id="8_d8xh1"]
+[ext_resource type="Script" path="res://Objects/Death.gd" id="9_6b6ak"]
+[ext_resource type="AudioStream" uid="uid://f1v2ukg3nmpq" path="res://Assets/Sounds/Land.wav" id="9_m34yj"]
+[ext_resource type="Script" path="res://Objects/Ascend.gd" id="10_ttkq2"]
+[ext_resource type="AudioStream" uid="uid://c54wk7ic1505c" path="res://Assets/Sounds/Dash.wav" id="11_qc1ib"]
+[ext_resource type="Script" path="res://Objects/Killbox.gd" id="13_nkyr4"]
+[ext_resource type="AudioStream" uid="uid://dr3s2meoex8v" path="res://Assets/Sounds/Death.wav" id="14_lqreg"]
+[ext_resource type="AudioStream" uid="uid://dtpf28jxck4cv" path="res://Assets/Sounds/Respawn.wav" id="15_v6gge"]
+[ext_resource type="Texture2D" uid="uid://busly836emiuf" path="res://Assets/Sprite/particle.png" id="17_eamuj"]
+[ext_resource type="AudioStream" uid="uid://b3lwr2rvqbiwc" path="res://Assets/Sounds/Ascend.wav" id="17_k462t"]
+[ext_resource type="Texture2D" uid="uid://d2oxtibnbdkah" path="res://Assets/Additional/circle.png" id="20_flqt2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78i1e"]
+atlas = ExtResource("1_cpqxn")
+region = Rect2(80, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtpbc"]
+atlas = ExtResource("1_cpqxn")
+region = Rect2(64, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daf1t"]
+atlas = ExtResource("1_cpqxn")
+region = Rect2(16, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqycb"]
+atlas = ExtResource("1_cpqxn")
+region = Rect2(32, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7y1k"]
+atlas = ExtResource("1_cpqxn")
+region = Rect2(16, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpdxs"]
+atlas = ExtResource("1_cpqxn")
+region = Rect2(64, 240, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpw4l"]
+atlas = ExtResource("1_cpqxn")
+region = Rect2(96, 240, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m05my"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78i1e")
+}],
+"loop": true,
+"name": &"ascend",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtpbc")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daf1t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqycb")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7y1k")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_vpdxs")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpw4l")
+}],
+"loop": true,
+"name": &"start",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4nhn"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cmdv"]
+radius = 6.0
+
+[sub_resource type="Gradient" id="Gradient_ako23"]
+offsets = PackedFloat32Array(0, 0.578595, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.494983, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mdcpp"]
+gradient = SubResource("Gradient_ako23")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xfop5"]
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 60.0
+damping_max = 80.0
+scale_min = 0.6
+scale_max = 1.2
+color_ramp = SubResource("GradientTexture1D_mdcpp")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "sounds", "killbox", "state_machine", "particles", "end_particles", "ending_sprite")]
+collision_layer = 80
+script = ExtResource("1_e1y7b")
+sprite = NodePath("Sprite")
+sounds = NodePath("Sounds")
+killbox = NodePath("Killbox")
+state_machine = NodePath("StateMachine")
+particles = NodePath("DeathParticles")
+end_particles = NodePath("EndingParticles")
+ending_sprite = NodePath("Ending")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m05my")
+animation = &"ascend"
+autoplay = "start"
+
+[node name="BaseCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_x4nhn")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("3_s3vm7")
+player = NodePath("..")
+
+[node name="Start" type="Node" parent="StateMachine"]
+script = ExtResource("4_2ere0")
+anim = "start"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_4htim")
+anim = "idle"
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_1rgnn")
+anim = "jump"
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("6_2pjuo")
+anim = "run"
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("7_6dapg")
+anim = "dash"
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("9_6b6ak")
+anim = "jump"
+
+[node name="Ascend" type="Node" parent="StateMachine"]
+script = ExtResource("10_ttkq2")
+anim = "ascend"
+
+[node name="Sounds" type="Node2D" parent="."]
+script = ExtResource("8_cq3m2")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_d8xh1")
+bus = &"Sounds"
+
+[node name="Land" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_m34yj")
+bus = &"Sounds"
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("11_qc1ib")
+bus = &"Sounds"
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("14_lqreg")
+volume_db = 15.0
+bus = &"Sounds"
+
+[node name="Respawn" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_v6gge")
+bus = &"Sounds"
+
+[node name="Ascend" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("17_k462t")
+bus = &"Sounds"
+
+[node name="Killbox" type="Area2D" parent="." node_paths=PackedStringArray("player")]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("13_nkyr4")
+player = NodePath("..")
+
+[node name="Collider" type="CollisionShape2D" parent="Killbox"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_1cmdv")
+
+[node name="DeathParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_xfop5")
+texture = ExtResource("17_eamuj")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="EndingParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_xfop5")
+texture = ExtResource("17_eamuj")
+lifetime = 0.3
+
+[node name="Ending" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, 2)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("20_flqt2")
+
+[connection signal="finished" from="Sounds/Ascend" to="StateMachine/Ascend" method="_on_ascend_finished"]

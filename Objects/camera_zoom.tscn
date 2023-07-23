@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://pvkb4jeaxn3r"]
+
+[ext_resource type="Script" path="res://Objects/CameraZoom.gd" id="1_chomf"]
+
+[node name="CameraZoom" type="Area2D"]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_chomf")

@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bwm5buffhf43v"]
+
+[ext_resource type="FontFile" uid="uid://dx6u2wcsniysb" path="res://Assets/Font/Not Jam Third Dimension 15.ttf" id="1_ubawp"]
+
+[resource]
+font = ExtResource("1_ubawp")
+font_size = 15

@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://bk4c171apra1j"]
+
+[ext_resource type="Script" path="res://Objects/Spring.gd" id="1_pnb1q"]
+[ext_resource type="Texture2D" uid="uid://olsklrpa2sbi" path="res://Assets/Tilemap/monochrome_tilemap_transparent_packed.png" id="2_nki1k"]
+[ext_resource type="Script" path="res://Objects/SoundController.gd" id="3_2507m"]
+[ext_resource type="AudioStream" uid="uid://bt41mf2ak7var" path="res://Assets/Sounds/Spring.wav" id="4_qcr0h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0p4j"]
+atlas = ExtResource("2_nki1k")
+region = Rect2(80, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwr4t"]
+atlas = ExtResource("2_nki1k")
+region = Rect2(64, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iw62g"]
+atlas = ExtResource("2_nki1k")
+region = Rect2(48, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yvcw"]
+atlas = ExtResource("2_nki1k")
+region = Rect2(48, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dea50"]
+animations = [{
+"frames": [{
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_n0p4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwr4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iw62g")
+}],
+"loop": false,
+"name": &"bounce",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yvcw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e3154"]
+radius = 8.0
+
+[node name="Spring" type="Area2D" node_paths=PackedStringArray("sprite", "sounds")]
+use_parent_material = true
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_pnb1q")
+sprite = NodePath("Sprite")
+sounds = NodePath("Sounds")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dea50")
+animation = &"bounce"
+autoplay = "idle"
+frame = 2
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e3154")
+
+[node name="Sounds" type="Node2D" parent="."]
+script = ExtResource("3_2507m")
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("4_qcr0h")
+volume_db = 20.0
+bus = &"Sounds"
