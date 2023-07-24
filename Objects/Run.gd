@@ -12,6 +12,7 @@ func __physics_process(_delta):
 	
 	if player.get_jump_input_buffer():
 		player.velocity.y = player.JUMP_VELOCITY
+		player.dash_cooldown = 0
 		state_machine.change_state("Jump")
 	
 	if player.get_dash_input():

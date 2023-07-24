@@ -16,6 +16,7 @@ func __physics_process(delta):
 	if player.is_on_floor():
 		state_machine.change_state("Idle")
 		player.sounds.play_sound("Land")
+		player.dash_cooldown = 0
 	else:
 		if player.test_move(player.transform, Vector2(0, 0)):
 			# Floor clip exception

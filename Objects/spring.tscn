@@ -58,6 +58,7 @@ sprite = NodePath("Sprite")
 sounds = NodePath("Sounds")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_dea50")
 animation = &"bounce"
 autoplay = "idle"
