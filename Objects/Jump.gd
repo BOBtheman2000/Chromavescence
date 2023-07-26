@@ -11,7 +11,6 @@ func _enter():
 	if player.velocity.y < 0:
 		player.sounds.play_sound("Jump")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func __physics_process(delta):
 	if player.is_on_floor():
 		state_machine.change_state("Idle")
@@ -32,13 +31,13 @@ func __physics_process(delta):
 		if player.get_dash_input():
 			state_machine.change_state("Dash")
 		player.sprite.flip_h = direction < 0
-		player.velocity.x = move_toward(player.velocity.x, direction * player.MAX_AIR_SPEED, player.AIR_ACCEL)#direction * min(player.MAX_AIR_SPEED, abs(player.velocity.x) + player.AIR_ACCEL)
+		player.velocity.x = move_toward(player.velocity.x, direction * player.MAX_AIR_SPEED, player.AIR_ACCEL)
 	else:
 		if player.get_dash_input():
 			state_machine.change_state("Dash")
 			# Force dash if idle
-			player.velocity.x = player.sprite.scale.x * player.DASH_SPEED
-		player.velocity.x = move_toward(player.velocity.x, 0, player.MAX_AIR_SPEED)
+			player.velocity.x = (-1 if player.sprite.flip_h else 1) * player.DASH_SPEED
+		player.velocity.x = move_toward(player.velocity.x, 0, player.AIR_DECCEL)
 	
 	player.move_and_slide()
 

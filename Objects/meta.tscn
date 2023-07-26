@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://mm7oyg8x67bo"]
+[gd_scene load_steps=55 format=3 uid="uid://mm7oyg8x67bo"]
 
 [ext_resource type="Script" path="res://Objects/meta.gd" id="1_1m601"]
 [ext_resource type="PackedScene" uid="uid://m63h3wo1csll" path="res://Objects/player.tscn" id="1_qwxb8"]
@@ -58,14 +58,23 @@ shader_parameter/enabled = false
 shader = SubResource("Shader_5cxbs")
 shader_parameter/enabled = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hysxg"]
-size = Vector2(47, 192)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ru0l"]
+size = Vector2(495, 192)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eygjk"]
-size = Vector2(584, 163)
+size = Vector2(744, 163)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weo8q"]
 size = Vector2(304.5, 182)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qoesd"]
+size = Vector2(18.625, 182)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ro4"]
+size = Vector2(168, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hysxg"]
+size = Vector2(47, 192)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qbcxs"]
 size = Vector2(32, 112)
@@ -340,8 +349,8 @@ zoom_range = 2.6
 meta = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/TutorialGap"]
-position = Vector2(16.5, -35)
-shape = SubResource("RectangleShape2D_hysxg")
+position = Vector2(240.5, -35)
+shape = SubResource("RectangleShape2D_1ru0l")
 
 [node name="TutorialReset" parent="WorldC" node_paths=PackedStringArray("meta") instance=ExtResource("11_jqwic")]
 position = Vector2(616, -147)
@@ -349,7 +358,7 @@ zoom_range = 3.0
 meta = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/TutorialReset"]
-position = Vector2(788, -19.5)
+position = Vector2(868, -19.5)
 shape = SubResource("RectangleShape2D_eygjk")
 
 [node name="TutorialSecret" parent="WorldC" node_paths=PackedStringArray("meta") instance=ExtResource("11_jqwic")]
@@ -361,6 +370,19 @@ meta = NodePath("../..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/TutorialSecret"]
 position = Vector2(488.25, -29)
 shape = SubResource("RectangleShape2D_weo8q")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WorldC/TutorialSecret"]
+position = Vector2(1106, -55)
+shape = SubResource("RectangleShape2D_qoesd")
+
+[node name="TutorialGem" parent="WorldC" node_paths=PackedStringArray("meta") instance=ExtResource("11_jqwic")]
+position = Vector2(1784, -353)
+zoom_range = 2.4
+meta = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/TutorialGem"]
+position = Vector2(-12, -3)
+shape = SubResource("RectangleShape2D_r8ro4")
 
 [node name="TutorialStart" parent="WorldC" node_paths=PackedStringArray("meta") instance=ExtResource("11_jqwic")]
 position = Vector2(-295, 1)

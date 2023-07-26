@@ -8,6 +8,7 @@ const MAX_FALL_SPEED = 100.0
 const DASH_SPEED = 800.0
 const DASH_DECCEL = 30.0
 const AIR_ACCEL = 50.0
+const AIR_DECCEL = 30.0
 const RUN_ACCEL = 100.0
 const STOP_DECCEL = 100.0
 const JUMP_VELOCITY = -400.0

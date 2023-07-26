@@ -23,7 +23,7 @@ func __physics_process(_delta):
 	if direction:
 		state_machine.change_state("Run")
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.STOP_DECCEL)# sign(player.velocity.x) * max(0, (abs(player.velocity.x) - player.STOP_DECCEL))
+		player.velocity.x = move_toward(player.velocity.x, 0, player.STOP_DECCEL)
 	
 	player.move_and_slide()
 
