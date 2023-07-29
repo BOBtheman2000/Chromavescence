@@ -515,12 +515,13 @@ stream = ExtResource("20_1o17q")
 volume_db = -80.0
 bus = &"Bside"
 
-[node name="PauseScreen" type="CanvasLayer" parent="." node_paths=PackedStringArray("music_slider", "sound_slider")]
+[node name="PauseScreen" type="CanvasLayer" parent="." node_paths=PackedStringArray("music_slider", "sound_slider", "ui")]
 process_mode = 3
 visible = false
 script = ExtResource("23_bg4hd")
 music_slider = NodePath("UI/ColorRect/HBoxContainer/VBoxContainer/MusicSlide")
 sound_slider = NodePath("UI/ColorRect/HBoxContainer/VBoxContainer2/SoundSlide")
+ui = NodePath("UI")
 
 [node name="UI" type="Control" parent="PauseScreen"]
 layout_mode = 3
@@ -529,6 +530,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1e-05)
+pivot_offset = Vector2(500, 300)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = SubResource("Theme_kyxrl")
