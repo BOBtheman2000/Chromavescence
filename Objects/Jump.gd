@@ -31,7 +31,8 @@ func __physics_process(delta):
 		if player.get_dash_input():
 			state_machine.change_state("Dash")
 		player.sprite.flip_h = direction < 0
-		player.velocity.x = move_toward(player.velocity.x, direction * player.MAX_AIR_SPEED, player.AIR_ACCEL)
+		if abs(player.velocity.x) <= player.MAX_AIR_SPEED:
+			player.velocity.x = move_toward(player.velocity.x, direction * player.MAX_AIR_SPEED, player.AIR_ACCEL)
 	else:
 		if player.get_dash_input():
 			state_machine.change_state("Dash")

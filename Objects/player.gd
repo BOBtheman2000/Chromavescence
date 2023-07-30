@@ -6,7 +6,7 @@ const MAX_AIR_SPEED = 200.0
 const MAX_RUN_SPEED = 200.0
 const MAX_FALL_SPEED = 100.0
 const DASH_SPEED = 600.0
-const DASH_DECCEL = 20.0
+const DASH_DECCEL = 30.0
 const AIR_ACCEL = 50.0
 const AIR_DECCEL = 30.0
 const RUN_ACCEL = 100.0
@@ -14,7 +14,6 @@ const STOP_DECCEL = 100.0
 const JUMP_VELOCITY = -400.0
 const CAMERA_OFFSET = Vector2(20, 10)
 
-const DASH_TIME = 0.15
 const DASH_COOLDOWN_TIME = 0.5
 
 @export var sprite: AnimatedSprite2D

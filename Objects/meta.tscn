@@ -453,32 +453,36 @@ shape = SubResource("RectangleShape2D_co2cj")
 position = Vector2(-378, -396.5)
 shape = SubResource("RectangleShape2D_id6rg")
 
-[node name="TutorialSpawn" parent="WorldC" node_paths=PackedStringArray("player") instance=ExtResource("13_wwv26")]
+[node name="TutorialSpawn" parent="WorldC" node_paths=PackedStringArray("player", "meta") instance=ExtResource("13_wwv26")]
 player = NodePath("../../Player")
+meta = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/TutorialSpawn"]
 position = Vector2(8, -140)
 shape = SubResource("RectangleShape2D_1b134")
 
-[node name="WorldSpawn" parent="WorldC" node_paths=PackedStringArray("player") instance=ExtResource("13_wwv26")]
+[node name="WorldSpawn" parent="WorldC" node_paths=PackedStringArray("player", "meta") instance=ExtResource("13_wwv26")]
 position = Vector2(-104, 240)
 player = NodePath("../../Player")
+meta = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/WorldSpawn"]
 position = Vector2(-8, -32)
 shape = SubResource("RectangleShape2D_1b134")
 
-[node name="WorldSpawn2" parent="WorldC" node_paths=PackedStringArray("player") instance=ExtResource("13_wwv26")]
+[node name="WorldSpawn2" parent="WorldC" node_paths=PackedStringArray("player", "meta") instance=ExtResource("13_wwv26")]
 position = Vector2(-336, -128)
 player = NodePath("../../Player")
+meta = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/WorldSpawn2"]
 position = Vector2(-8, -80)
 shape = SubResource("RectangleShape2D_qbogd")
 
-[node name="WorldSpawn3" parent="WorldC" node_paths=PackedStringArray("player") instance=ExtResource("13_wwv26")]
+[node name="WorldSpawn3" parent="WorldC" node_paths=PackedStringArray("player", "meta") instance=ExtResource("13_wwv26")]
 position = Vector2(-720, 208)
 player = NodePath("../../Player")
+meta = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldC/WorldSpawn3"]
 position = Vector2(0, -28)
