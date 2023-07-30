@@ -17,12 +17,13 @@ func __physics_process(_delta):
 	
 	if player.get_jump_input_buffer():
 		player.velocity.y = player.JUMP_VELOCITY
+		player.dash_cooldown = 0
 	
 	var direction = Input.get_axis("run_left", "run_right")
 	if direction:
 		state_machine.change_state("Run")
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.STOP_DECCEL)# sign(player.velocity.x) * max(0, (abs(player.velocity.x) - player.STOP_DECCEL))
+		player.velocity.x = move_toward(player.velocity.x, 0, player.STOP_DECCEL)
 	
 	player.move_and_slide()
 

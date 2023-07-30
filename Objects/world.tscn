@@ -6,7 +6,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_msbjd"]
 shader = ExtResource("1_tupmh")
-shader_parameter/enabled = false
+shader_parameter/enabled = true
 
 [node name="World" type="TileMap"]
 material = SubResource("ShaderMaterial_msbjd")

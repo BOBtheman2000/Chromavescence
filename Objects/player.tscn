@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://m63h3wo1csll"]
+[gd_scene load_steps=35 format=3 uid="uid://m63h3wo1csll"]
 
 [ext_resource type="Texture2D" uid="uid://olsklrpa2sbi" path="res://Assets/Tilemap/monochrome_tilemap_transparent_packed.png" id="1_cpqxn"]
 [ext_resource type="Script" path="res://Objects/player.gd" id="1_e1y7b"]
@@ -131,7 +131,20 @@ scale_min = 0.6
 scale_max = 1.2
 color_ramp = SubResource("GradientTexture1D_mdcpp")
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "sounds", "killbox", "state_machine", "particles", "end_particles", "ending_sprite")]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6btnt"]
+particle_flag_disable_z = true
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 140.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_min = 60.0
+damping_max = 80.0
+scale_max = 1.5
+color_ramp = SubResource("GradientTexture1D_mdcpp")
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "sounds", "killbox", "state_machine", "particles", "dash_particles", "end_particles", "ending_sprite")]
 collision_layer = 80
 script = ExtResource("1_e1y7b")
 sprite = NodePath("Sprite")
@@ -139,6 +152,7 @@ sounds = NodePath("Sounds")
 killbox = NodePath("Killbox")
 state_machine = NodePath("StateMachine")
 particles = NodePath("DeathParticles")
+dash_particles = NodePath("DashParticles")
 end_particles = NodePath("EndingParticles")
 ending_sprite = NodePath("Ending")
 
@@ -225,6 +239,15 @@ shape = SubResource("CircleShape2D_1cmdv")
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_xfop5")
+texture = ExtResource("17_eamuj")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+
+[node name="DashParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_6btnt")
 texture = ExtResource("17_eamuj")
 lifetime = 0.3
 one_shot = true

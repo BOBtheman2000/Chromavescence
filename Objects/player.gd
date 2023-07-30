@@ -5,15 +5,16 @@ class_name Player
 const MAX_AIR_SPEED = 200.0
 const MAX_RUN_SPEED = 200.0
 const MAX_FALL_SPEED = 100.0
-const DASH_SPEED = 1000.0
+const DASH_SPEED = 600.0
+const DASH_DECCEL = 30.0
 const AIR_ACCEL = 50.0
+const AIR_DECCEL = 30.0
 const RUN_ACCEL = 100.0
 const STOP_DECCEL = 100.0
 const JUMP_VELOCITY = -400.0
 const CAMERA_OFFSET = Vector2(20, 10)
 
-const DASH_TIME = 0.05
-const DASH_COOLDOWN_TIME = 1
+const DASH_COOLDOWN_TIME = 0.5
 
 @export var sprite: AnimatedSprite2D
 @export var camera: Camera2D
@@ -22,6 +23,7 @@ const DASH_COOLDOWN_TIME = 1
 @export var killbox: Killbox
 @export var state_machine: PlayerStateMachine
 @export var particles: GPUParticles2D
+@export var dash_particles: GPUParticles2D
 @export var end_particles: GPUParticles2D
 @export var ending_sprite: Sprite2D
 

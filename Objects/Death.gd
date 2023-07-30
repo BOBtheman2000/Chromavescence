@@ -10,6 +10,7 @@ func _enter():
 	player.sprite.visible = false
 	player.particles.emitting = true
 	player.velocity = Vector2(0, 0)
+	player.killbox.set_deferred("monitoring", false)
 
 func __physics_process(delta):
 	death_timer = max(0, death_timer - delta)
@@ -17,6 +18,7 @@ func __physics_process(delta):
 		player.sprite.visible = true
 		player.position = player.spawn_point
 		player.velocity = Vector2(0, 0)
+		player.killbox.set_deferred("monitoring", true)
 		player.sounds.play_sound("Respawn")
 		state_machine.change_state("Idle")
 

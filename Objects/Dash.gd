@@ -1,13 +1,14 @@
 extends PlayerState
 
-var dash_time = 0
 var ground_dash = false
 
 func _enter():
 	player = state_machine.player
 	player.change_animation(anim)
-	dash_time = player.DASH_TIME
+	player.velocity.x = sign(player.velocity.x) * player.DASH_SPEED
 	player.sounds.play_sound("Dash")
+	player.dash_particles.scale.x = -sign(player.velocity.x)
+	player.dash_particles.emitting = true
 
 func __physics_process(delta):
 	if player.get_jump_input_buffer() and player.is_on_floor():
@@ -15,15 +16,15 @@ func __physics_process(delta):
 		state_machine.change_state("Jump")
 		return
 	
-	dash_time = max(0, dash_time - delta)
-	if dash_time <= 0:
-		if player.is_on_floor():
+	if player.is_on_floor():
+		if abs(player.velocity.x) <= player.MAX_RUN_SPEED:
 			state_machine.change_state("Run")
-		else:
+	else:
+		if abs(player.velocity.x) <= player.MAX_AIR_SPEED:
 			state_machine.change_state("Jump")
 			player.coyote_buffer = 0
 	player.velocity.y = 0
-	player.velocity.x = sign(player.velocity.x) * player.DASH_SPEED
+	player.velocity.x -= sign(player.velocity.x) * player.DASH_DECCEL
 
 	player.move_and_slide()
 
